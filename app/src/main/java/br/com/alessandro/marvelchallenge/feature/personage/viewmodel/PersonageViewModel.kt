@@ -22,12 +22,12 @@ class PersonageViewModel(
     fun getPersonages() = launch {
         try {
             getPersonagesInteractor.execute(limit = LIMITE_PERSONAGES).apply {
-                val size = this.data.results.size
+                val size = this.size
 
                 state.postValue(
                     PersonageViewState.ShowLists(
-                        listCarousel = this.data.results.subList(0, 5).toMutableList(),
-                        list = this.data.results.subList(5, size).toMutableList()
+                        listCarousel = this.subList(0, 5).toMutableList(),
+                        list = this.subList(5, size).toMutableList()
                     )
                 )
             }
@@ -46,7 +46,7 @@ class PersonageViewModel(
 
             getPersonagesInteractor.execute(offset, LIMITE_PERSONAGES).apply {
                 state.postValue(
-                    PersonageViewState.UpdateList(this.data.results)
+                    PersonageViewState.UpdateList(this)
                 )
             }
         } catch (error: Exception) {
