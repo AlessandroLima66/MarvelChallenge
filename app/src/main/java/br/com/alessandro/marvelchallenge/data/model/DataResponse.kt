@@ -48,6 +48,4 @@ data class Thumbnail(
 
     @SerializedName( "extension")
     val extension: String
-): Serializable {
-    fun getUrl() = "$path.$extension".replace("http://", "https://") /* todo, validar se preciso*/
-}
+): Serializable
