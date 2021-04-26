@@ -18,6 +18,7 @@ import br.com.alessandro.marvelchallenge.feature.personage.adapter.PersonagesCar
 import br.com.alessandro.marvelchallenge.feature.personage.viewmodel.PersonageViewModel
 import br.com.alessandro.marvelchallenge.feature.personage.viewstate.PersonageViewState
 import br.com.alessandro.marvelchallenge.util.toAccessibilityHeaderType
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.squareup.picasso.Picasso
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -58,6 +59,8 @@ class PersonageListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
         setupAcessibility()
+        showShimmerCarousel()
+        showShimmerList()
         observers()
         viewModel.getPersonages()
     }
@@ -67,6 +70,9 @@ class PersonageListFragment : Fragment() {
         carousel = view.findViewById(R.id.personage_carousel)
         titleList = view.findViewById(R.id.personage_title_list)
         list = view.findViewById(R.id.personage_list)
+        carouselShimmer = view.findViewById(R.id.personage_carousel_shimmer)
+        listShimmer = view.findViewById(R.id.personage_list_shimmer)
+
     }
 
     private fun setupAcessibility() {
@@ -87,6 +93,7 @@ class PersonageListFragment : Fragment() {
                 LinearLayoutManager.VERTICAL,
                 false
             )
+            visibility = View.VISIBLE
             adapter = personagesAdapter
 
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -122,17 +129,48 @@ class PersonageListFragment : Fragment() {
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
+            visibility = View.VISIBLE
             adapter = personagesCarouselAdapter
+        }
+    }
+
+    private fun showShimmerCarousel() {
+        carouselShimmer.apply {
+            startShimmer()
+            visibility = View.VISIBLE
+        }
+    }
+
+    private fun stopShimmerCarousel() {
+        carouselShimmer.apply {
+            visibility = View.GONE
+            stopShimmer()
+        }
+    }
+
+    private fun showShimmerList() {
+        listShimmer.apply {
+            startShimmer()
+            visibility = View.VISIBLE
+        }
+    }
+
+    private fun stopShimmerList() {
+        listShimmer.apply {
+            visibility = View.GONE
+            stopShimmer()
         }
     }
 
     private fun observers() {
         viewModel.viewState.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
-
                 is PersonageViewState.ShowLists -> {
                     setupCarousel(state.listCarousel)
                     setupList(state.list)
+
+                    stopShimmerCarousel()
+                    stopShimmerList()
                 }
 
                 is PersonageViewState.UpdateList -> {

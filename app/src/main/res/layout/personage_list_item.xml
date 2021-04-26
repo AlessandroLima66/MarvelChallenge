@@ -2,8 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/personage_list_item_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:focusable="true"
+    android:importantForAccessibility="yes"
     android:background="@drawable/background_list"
     android:layout_marginTop="4dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -13,6 +16,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:scaleType="fitXY"
+        android:importantForAccessibility="no"
         android:src="@drawable/teste_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +26,7 @@
         android:id="@+id/personage_list_item_divider"
         android:layout_width="6dp"
         android:layout_height="0dp"
-        android:background="#E62429"
+        android:background="@color/color_E62429"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/personage_list_item_image"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +38,7 @@
         android:layout_margin="8dp"
         android:maxLines="2"
         android:padding="4dp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constrainedWidth="true"
@@ -50,16 +54,18 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:padding="4dp"
-        android:textColor="#BDBDBD"
+        android:textColor="@color/color_BDBDBD"
         android:textSize="14sp"
         android:textStyle="italic"
+        android:maxLines="4"
+        android:ellipsize="end"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/personage_list_item_divider"
         app:layout_constraintTop_toBottomOf="@id/personage_list_item_name"
-        app:layout_constraintVertical_bias="0.058"
-        tools:text="descrição do personagem ou algum outro texto que esteja disponivel" />
+        app:layout_constraintVertical_bias="0.1"
+        tools:text="descrição do personagem ou algum outro texto que esteja disponivel jyfudyuyduydytdtrytfyuuyfyufufyfyuffyfyufytdyfdtdytsrsyufyufytdttdytdytdufuyfdtdrdstrdsfjyfhfhdhddyttdytdydudutdytdtrdtdyfyffyufyfyufytfyt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,4 +10,6 @@
     <string name="message_error_more_personages">Ops, tivemos um erro ao solicitar mais personagens, favor tentar novamente!</string>
     <string name="title_error">Erro</string>
     <string name="button_ok">OK</string>
+    <string name="description_loading_carousel">carregando carrossel de pensonagens</string>
+    <string name="description_loading_list">carregando lista de pensonagens</string>
 </resources>
