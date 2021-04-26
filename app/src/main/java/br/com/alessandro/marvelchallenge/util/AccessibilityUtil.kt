@@ -2,6 +2,8 @@ package br.com.alessandro.marvelchallenge.util
 
 import android.os.Build
 import android.view.View
+import android.view.accessibility.AccessibilityNodeInfo
+import android.widget.Button
 import android.widget.TextView
 import androidx.core.view.AccessibilityDelegateCompat
 import androidx.core.view.ViewCompat
@@ -21,4 +23,29 @@ fun TextView.toAccessibilityHeaderType(value: Boolean = true) {
             }
         })
     }
+}
+
+fun View.accessibilityChangeTypeToButton() {
+    accessibilityDelegate = object : View.AccessibilityDelegate() {
+        override fun onInitializeAccessibilityNodeInfo(
+            host: View,
+            info: AccessibilityNodeInfo
+        ) {
+            super.onInitializeAccessibilityNodeInfo(host, info)
+            info.className = Button::class.java.name
+        }
+    }
+}
+
+fun View.accessibilityMessageClick(message: String) {
+    ViewCompat.setAccessibilityDelegate(this, object : AccessibilityDelegateCompat() {
+        override fun onInitializeAccessibilityNodeInfo(v: View, info: AccessibilityNodeInfoCompat) {
+            super.onInitializeAccessibilityNodeInfo(v, info)
+            info.addAction(
+                AccessibilityNodeInfoCompat.AccessibilityActionCompat(
+                    AccessibilityNodeInfoCompat.ACTION_CLICK, message
+                )
+            )
+        }
+    })
 }

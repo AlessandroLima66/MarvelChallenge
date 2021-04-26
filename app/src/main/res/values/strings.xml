@@ -12,4 +12,5 @@
     <string name="button_ok">OK</string>
     <string name="description_loading_carousel">carregando carrossel de pensonagens</string>
     <string name="description_loading_list">carregando lista de pensonagens</string>
+    <string name="message_click">selecionar o personagem</string>
 </resources>

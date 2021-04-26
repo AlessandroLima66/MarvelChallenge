@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.alessandro.marvelchallenge.R
 import br.com.alessandro.marvelchallenge.data.model.Character
 import br.com.alessandro.marvelchallenge.util.Constants.PORTRAIT_FANTASTIC
+import br.com.alessandro.marvelchallenge.util.accessibilityChangeTypeToButton
+import br.com.alessandro.marvelchallenge.util.accessibilityMessageClick
 import com.squareup.picasso.Picasso
 
 class PersonagesCarouselAdapter(
@@ -39,7 +41,20 @@ class PersonagesCarouselAdapter(
             picasso: Picasso
         ) {
             name.text = personage.name
+            setImage(picasso, personage)
+            setAccessibility()
+        }
 
+        private fun setAccessibility() =
+            itemView.apply {
+                accessibilityChangeTypeToButton()
+                accessibilityMessageClick(this.context.getString(R.string.message_click))
+            }
+
+        private fun setImage(
+            picasso: Picasso,
+            personage: Character
+        ) {
             picasso
                 .load("${personage.thumbnail.path}/$PORTRAIT_FANTASTIC.${personage.thumbnail.extension}")
                 .centerCrop()
