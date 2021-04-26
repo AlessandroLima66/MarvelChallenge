@@ -1,5 +1,6 @@
 package br.com.alessandro.marvelchallenge.feature.personage.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,10 +30,20 @@ class PersonageListFragment : Fragment() {
     private lateinit var carousel: RecyclerView
     private lateinit var titleList:TextView
     private lateinit var list: RecyclerView
+    private lateinit var carouselShimmer: ShimmerFrameLayout
+    private lateinit var listShimmer: ShimmerFrameLayout
     private lateinit var personagesAdapter: PersonagesAdapter
     private lateinit var personagesCarouselAdapter: PersonagesCarouselAdapter
     private val viewModel: PersonageViewModel by viewModel()
     private val picasso: Picasso by inject()
+
+    private val dialogError: AlertDialog by lazy {
+        AlertDialog.Builder(context)
+            .setPositiveButton(R.string.button_ok) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -126,6 +137,13 @@ class PersonageListFragment : Fragment() {
 
                 is PersonageViewState.UpdateList -> {
                     personagesAdapter.updateItems(state.list)
+                }
+
+                is PersonageViewState.Error -> {
+                    dialogError.apply {
+                        setMessage(getString(state.message))
+                        show()
+                    }
                 }
             }
         })

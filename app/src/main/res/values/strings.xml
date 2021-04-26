@@ -6,4 +6,8 @@
     <string name="title_carousel">5 personagens carrossel</string>
     <string name="title_list">lista personagens</string>
     <string name="message_loading">carregando personagens</string>
+    <string name="message_error">Ops, ocorreu um erro</string>
+    <string name="message_error_more_personages">Ops, tivemos um erro ao solicitar mais personagens, favor tentar novamente!</string>
+    <string name="title_error">Erro</string>
+    <string name="button_ok">OK</string>
 </resources>

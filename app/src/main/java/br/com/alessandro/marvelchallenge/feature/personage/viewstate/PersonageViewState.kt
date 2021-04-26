@@ -11,4 +11,8 @@ sealed class PersonageViewState {
     data class UpdateList(
         val list: List<Character>
     ): PersonageViewState()
+    
+    data class Error(
+        val message: Int
+    ) : PersonageViewState()
 }

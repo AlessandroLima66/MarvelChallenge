@@ -1,8 +1,8 @@
 package br.com.alessandro.marvelchallenge.feature.personage.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import br.com.alessandro.marvelchallenge.BaseViewModel
+import br.com.alessandro.marvelchallenge.R
 import br.com.alessandro.marvelchallenge.feature.personage.viewstate.PersonageViewState
 import br.com.alessandro.marvelchallenge.interactor.personage.GetPersonagesInteractor
 import br.com.alessandro.marvelchallenge.util.LiveEvent
@@ -32,7 +32,10 @@ class PersonageViewModel(
                 )
             }
         } catch (error: Exception) {
-            Log.d(this@PersonageViewModel.javaClass.name, "tratar exception" )
+            /*TODO, tratar melhor as excecoes */
+            state.postValue(
+                PersonageViewState.Error(message = R.string.message_error)
+            )
         }
     }
 
@@ -47,11 +50,14 @@ class PersonageViewModel(
                 )
             }
         } catch (error: Exception) {
-            Log.d(this@PersonageViewModel.javaClass.name, "tratar exception")
+            /*TODO, tratar melhor as excecoes */
+            state.postValue(
+                PersonageViewState.Error(message = R.string.message_error_more_personages)
+            )
         }
     }
 
-    companion object{
+    companion object {
         private const val LIMITE_PERSONAGES = 20
     }
 }
